@@ -42,5 +42,29 @@ public class BinarySearchTest {
 		SearchResult searchResult = BinarySearch.search(key, seq);
 		assertEquals(seq.length, searchResult.getPosition());
 	}
+	@Test
+	public void LenghtGreaterThen1IsMiddleElementEven() {
+		int[] seq = {0,1,2,3,4,5};
+		int key = 2;
+		int center = seq.length/2;
+		SearchResult searchResult = BinarySearch.search(key, seq);
+		assertEquals(center, searchResult.getPosition());
+	}
+	@Test
+	public void LenghtGreaterThen1IsMiddleElementOdd() {
+		int[] seq = {0,1,3,4,5};
+		int key = 3;
+		int center = seq.length/2;
+		SearchResult searchResult = BinarySearch.search(key, seq);
+		assertEquals(center+1, searchResult.getPosition());
+	}
+	@Test
+	public void LenghtGreaterThen1IsNotInSeq() {
+		int[] seq = {0,1,3,4,5};
+		int key = 8;
+		SearchResult searchResult = BinarySearch.search(key, seq);
+		assertFalse(searchResult.isFound());
+	}
+
 
 }
