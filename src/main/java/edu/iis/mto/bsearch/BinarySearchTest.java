@@ -12,7 +12,7 @@ public class BinarySearchTest {
 	}
 	
 	@Test
-	public void LenghtEq1IsInSeq() {
+	public void LengthEq1IsInSeq() {
 		int[] seq = new int[1];
 		int key = 5;
 		seq[0] = key;
@@ -21,12 +21,26 @@ public class BinarySearchTest {
 	}
 	
 	@Test
-	public void LenghtEq1IsNotInSeq() {
+	public void LengthEq1IsNotInSeq() {
 		int[] seq = new int[1];
 		int key = 5;
-		//seq[0] = 8;
 		SearchResult searchResult = BinarySearch.search(key, seq);
 		assertFalse(searchResult.isFound());
+	}
+	
+	@Test
+	public void LengthGreaterThen1IsFirstElement() {
+		int[] seq = {0,1,2,3,4,5};
+		int key = 0;
+		SearchResult searchResult = BinarySearch.search(key, seq);
+		assertEquals(1, searchResult.getPosition());
+	}
+	@Test
+	public void LenghtGreaterThen1IsLastElement() {
+		int[] seq = {0,1,2,3,4,5};
+		int key = 5;
+		SearchResult searchResult = BinarySearch.search(key, seq);
+		assertEquals(seq.length, searchResult.getPosition());
 	}
 
 }
