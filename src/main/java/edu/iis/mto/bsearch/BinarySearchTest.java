@@ -2,8 +2,10 @@ package edu.iis.mto.bsearch;
 
 import static org.junit.Assert.*;
 
+import org.hamcrest.Matcher;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.*;
 public class BinarySearchTest {
 
 	private BinarySearch binarySearch;
@@ -17,15 +19,16 @@ public class BinarySearchTest {
 		int key = 5;
 		seq[0] = key;
 		SearchResult searchResult = BinarySearch.search(key, seq);
-		assertTrue(searchResult.isFound());
+		assertThat(true, is(searchResult.isFound()));
+		
 	}
-	
+
 	@Test
 	public void LengthEq1IsNotInSeq() {
 		int[] seq = new int[1];
 		int key = 5;
 		SearchResult searchResult = BinarySearch.search(key, seq);
-		assertFalse(searchResult.isFound());
+		assertThat(false, is(searchResult.isFound()));
 	}
 	
 	@Test
@@ -33,14 +36,14 @@ public class BinarySearchTest {
 		int[] seq = {0,1,2,3,4,5};
 		int key = 0;
 		SearchResult searchResult = BinarySearch.search(key, seq);
-		assertEquals(1, searchResult.getPosition());
+		assertThat(1, is(searchResult.getPosition()));
 	}
 	@Test
 	public void LenghtGreaterThen1IsLastElement() {
 		int[] seq = {0,1,2,3,4,5};
 		int key = 5;
 		SearchResult searchResult = BinarySearch.search(key, seq);
-		assertEquals(seq.length, searchResult.getPosition());
+		assertThat(seq.length, is(searchResult.getPosition()));
 	}
 	@Test
 	public void LenghtGreaterThen1IsMiddleElementEven() {
@@ -48,7 +51,7 @@ public class BinarySearchTest {
 		int key = 2;
 		int center = seq.length/2;
 		SearchResult searchResult = BinarySearch.search(key, seq);
-		assertEquals(center, searchResult.getPosition());
+		assertThat(center, is(searchResult.getPosition()));
 	}
 	@Test
 	public void LenghtGreaterThen1IsMiddleElementOdd() {
@@ -56,14 +59,14 @@ public class BinarySearchTest {
 		int key = 3;
 		int center = seq.length/2;
 		SearchResult searchResult = BinarySearch.search(key, seq);
-		assertEquals(center+1, searchResult.getPosition());
+		assertThat(center+1, is(searchResult.getPosition()));
 	}
 	@Test
 	public void LenghtGreaterThen1IsNotInSeq() {
 		int[] seq = {0,1,3,4,5};
-		int key = 8;
+		int key = 2;
 		SearchResult searchResult = BinarySearch.search(key, seq);
-		assertFalse(searchResult.isFound());
+		assertThat(false, is(searchResult.isFound()));
 	}
 
 
